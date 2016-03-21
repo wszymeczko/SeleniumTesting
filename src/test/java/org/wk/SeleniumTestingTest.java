@@ -11,13 +11,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import static org.junit.Assert.*;
 
-public class SeleniumTesting {
+public class SeleniumTestingTest {
 	private WebDriver driver;
 
 	@Before
 	public void setUp() throws Exception {
-		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		capabilities.setCapability("platform", Platform.WINDOWS);
 		capabilities.setCapability("name", "Selenium Testing");
 		URL url = new URL("http://192.168.56.20:4444/wd/hub");
@@ -29,7 +30,9 @@ public class SeleniumTesting {
 		driver.get("http://www.google.pl");
 		WebElement search = driver.findElement(By.id("lst-ib"));
 		search.sendKeys("selenium");
-		search.click();
+		WebElement button = driver.findElement(By.name("btnG"));
+		button.click();
+		assertEquals("Google", driver.getTitle());
 	}
 
 	@After
