@@ -19,8 +19,7 @@ public class SeleniumTestingTest {
 	@Before
 	public void setUp() throws Exception {
 		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		capabilities.setCapability("platform", Platform.WINDOWS);
-		capabilities.setCapability("name", "Selenium Testing");
+		capabilities.setPlatform(Platform.WINDOWS);
 		URL url = new URL("http://192.168.56.20:4444/wd/hub");
 		driver = new RemoteWebDriver(url, capabilities);
 	}
