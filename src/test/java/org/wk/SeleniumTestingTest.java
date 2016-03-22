@@ -1,6 +1,7 @@
 package org.wk;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,16 +27,23 @@ public class SeleniumTestingTest {
 
 	@Test
 	public void testTest() throws Exception {
-		driver.get("http://www.google.pl");
-		WebElement search = driver.findElement(By.id("lst-ib"));
-		search.sendKeys("European Patent Office");
-		WebElement button = driver.findElement(By.name("btnG"));
-		button.click();
-		assertEquals("Google", driver.getTitle());
+		driver.get("http://www.epo.org");
+		assertEquals("EPO - Home", driver.getTitle());
+		driver.manage().window().maximize();
+		WebElement patents = driver.findElement(By.linkText("Searching for patents"));
+		patents.click();
+		WebElement register = driver.findElement(By.linkText("European Patent Register"));
+		register.click();		
+		WebElement openBtn = driver.findElement(By.id("idOfButton"));
+		openBtn.click();
+		WebElement search = driver.findElement(By.name("query"));
+		search.sendKeys("dummy");
+		search.submit();
+		assertEquals("European Patent Register", driver.getTitle());
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		driver.quit();
+//		driver.quit();
 	}
 }
