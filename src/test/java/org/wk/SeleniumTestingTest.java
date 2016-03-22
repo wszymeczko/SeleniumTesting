@@ -20,7 +20,7 @@ public class SeleniumTestingTest {
 	public void setUp() throws Exception {
 		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 		capabilities.setPlatform(Platform.WINDOWS);
-		URL url = new URL("http://192.168.56.1:4444/wd/hub");
+		URL url = new URL("http://192.168.56.1:5555/wd/hub");
 		driver = new RemoteWebDriver(url, capabilities);
 	}
 
@@ -28,7 +28,7 @@ public class SeleniumTestingTest {
 	public void testTest() throws Exception {
 		driver.get("http://www.google.pl");
 		WebElement search = driver.findElement(By.id("lst-ib"));
-		search.sendKeys("selenium");
+		search.sendKeys("European Patent Office");
 		WebElement button = driver.findElement(By.name("btnG"));
 		button.click();
 		assertEquals("Google", driver.getTitle());
